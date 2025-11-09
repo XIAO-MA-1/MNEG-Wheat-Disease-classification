@@ -1,8 +1,5 @@
 # MNEG-Wheat-Disease-classification
-```
 官方 PyTorch 实现 | 论文《MNEG: Research on the Deep Learning Model with Fused Hierarchical Dual Attention Mechanism in Wheat Leaf Disease Detection》（投稿阶段）  
-
-```
 # 1.项目简介
 小麦是全球核心粮食作物，但叶片病害（白粉病、斑枯病、叶枯病、叶锈病等）导致全球年产量损失 10%-25%，传统人工识别效率低、实验室检测周期长，现有深度学习模型难以平衡轻量化部署与高精度识别需求。  
 本项目提出轻量级模型 MNEG，基于改进 MobileNetV2 架构，融合 EMA 与 GAM 双注意力机制，构建 “低层次特征筛选 - 中高层次特征增强” 的阶梯式优化路径，在保证模型轻量化的同时，实现小麦叶片病害的精准识别。核心成果包括：  
@@ -24,12 +21,18 @@
 - 下载链接：https://aistudio.baidu.com/datasetdetail/57525。
 ## 3.3 数据集结构
 仓库中的Dataset-classification文件夹中含有我们用于模型训练/测试的图像：  
-- Dataset-classification/
-   data_wheat/
-- text/（验证集，与训练集的格式相同）
-- val/（测试集，与训练集的格式相同）
-- train/（训练集）
-
+```
+Dataset-classification/
+   ├──data_wheat/
+      ├──text/（验证集，格式与训练集相同）
+      ├──val/（测试集，格式与训练集相同）
+      ├──train/（训练集）
+         ├── 枯萎病 / # 小麦枯萎病叶片图像（病斑特征：叶片枯萎、变色，严重时大面积干枯，影响植株生理功能）  
+         ├── 白粉病 / # 小麦白粉病叶片图像（病斑特征：叶片表面覆盖白色粉状霉层，阻碍气体交换与光合作用）  
+         ├── 斑枯病 / # 小麦斑枯病叶片图像（病斑特征：初期为褐色小斑点，随病情发展扩大并连接成片）  
+         ├── 叶锈病 / # 小麦叶锈病叶片图像（病斑特征：产生锈色孢子堆，初期黄色或橙色，后期深褐色）  
+         └── 健康植株 / # 健康小麦植株图像（特征：叶片鲜绿、形态舒展有光泽，无病害或虫害迹象  
+```
 # 4.实验结果
 ## 4.1核心性能指标（自建数据集）
 | 模型       | 准确率  | 精确率  | 召回率  | F1-score | 特异性  |
