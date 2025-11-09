@@ -24,7 +24,7 @@
 ## 3.3 数据集结构
 仓库中的Dataset-classification文件夹中含有我们用于模型训练/测试的图像：  
 - Dataset-classification/
-  ``` data_wheat/```
+   data_wheat/
 - text/（验证集，与训练集的格式相同）
 - val/（测试集，与训练集的格式相同）
 - train/（训练集）
