@@ -110,6 +110,23 @@ python predict.py \
 ## 6.3 预训练权重
 提供基于我们自己创建的数据集训练完成的最优权重，可直接用于预测或微调（./weight）。  
 适合场景：针对小麦的 “白粉病、枯萎病、叶锈病、斑枯病、健康叶片” 五类分类。若需扩展其他小麦病害，建议基于此权重微调。
-#7.项目文件结构
+# 7.项目文件结构
+```
+MNEG-Wheat-Disease-clssification/
+├──Dataset-classification/  #自建的小麦叶片数据集（含白粉病、条锈病、叶锈病、健康叶片）
+├──examples/                # 预测示例图像
+|  └──mine                  #自建数据集举例
+|  └──public                #开源数据集举例
+├──vweights/
+|  └──best_weight.pth       #训练的最优权重
+├──EMA.py                   #注意力机制模块
+├──README.md                #本文档
+├──class_indices.json       #类别索引映射
+├──gam.py                   #注意力机制模块
+├──model.py                 #模型代码
+├──predict.py               #预测代码
+├──requirements.txt         #环境需求
+└──train.py                 #训练代码
+```
 
 
