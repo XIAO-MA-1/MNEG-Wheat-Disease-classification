@@ -96,7 +96,20 @@ python train.py \
 使用训练好的权重进行小麦叶片图像预测，运行```predict.py```脚本，实例命令：
 ```
 python predict.py \
-   --image_path ./example/mine/Leaf rust.jpg \ #输入图像路径（示例图存于wxamples/）
+   --image_path ./example/mine/Leaf rust.png \ #输入图像路径（示例图存于examples/）
+   --weight_path ./weight/best_weight.pth \ # 权重路径
+   --device cuda:0
 ```
+## 预测输出实例：
+```
+图片名称：Leaf rust.png
+真实标签：Leaf rust
+预测标签：Leaf rust
+置信度：0.9851
+```
+## 6.3 预训练权重
+提供基于我们自己创建的数据集训练完成的最优权重，可直接用于预测或微调（./weight）。  
+适合场景：针对小麦的 “白粉病、枯萎病、叶锈病、斑枯病、健康叶片” 五类分类。若需扩展其他小麦病害，建议基于此权重微调。
+#7.项目文件结构
 
 
