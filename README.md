@@ -46,13 +46,14 @@ conda activate D:\environemnts\three
 pip install D:\whl\torch-1.12.0+cu113-cp39-cp39-win_amd64.whl
 pip install D:\whl\torchvision-0.13.0+cu113-cp39-cp39-win_amd64.whl
 pip install D:\whl\torchaudio-0.12.0+cu113-cp39-cp39-win_amd64.whl
+
 # 3. 安装其他依赖库（数据处理、可视化、模型工具等）
 pip install numpy~=1.26.4 matplotlib~=3.5.1 opencv-python~=4.8.0.76
 pip install pandas~=1.2.4 pillow~=11.2.1
 pip install tqdm~=4.67.1 
 ```
 ## 4.2硬件要求
-| 配置项                   | 详情                                       |
+| 配置项                   | 详情                                      |
 |-------------------------|-------------------------------------------|
 | Operating system        | Windows 11(64-bit)                        |
 | Processor               | 12th Gen Intel(R) Core(TM) i9-12900H      |
@@ -62,14 +63,25 @@ pip install tqdm~=4.67.1
 | Editor                  | Pycharm 2023.3                            |
 | Programming language    | Python3.9                                 |
 # 5.实验结果
-
-
-## 4.1核心性能指标（自建数据集）
+MNEG模型与主流的深度学习模型在小麦病害分类任务上的性能对比如下；
 | 模型       | 准确率  | 精确率  | 召回率  | F1-score | 特异性  |
 |------------|---------|---------|---------|----------|---------|
 | MNEG       | 98.55%  | 99.24%  | 98.43%  | 98.83%   | 99.24%  |
 | MobileNetV3| 71.99%  | 71.10%  | 70.57%  | 70.83%   | 93.09%  |
 | GhostNet   | 92.53%  | 92.79%  | 91.87%  | 92.33%   | 98.16%  |
 | MobileVIT  | 77.18%  | 75.61%  | 74.91%  | 75.26%   | 94.35%  |
-
+# 6.代码使用说明
+## 6.1模型训练
+运行```train.py```脚本启动训练，支持通过参数调整训练配置，示例如下：
+```
+python train.py \
+   --data_dir ./Dataset-classification/
+   --epoch 100\
+   --batch_size 64\
+   --lr  1e-3\
+   --weight_decay 1e-5 \
+   --save_dir ./weights \
+   --device cuda:0 \
+```
+## 关键参数说明:
 
