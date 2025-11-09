@@ -114,6 +114,10 @@ python predict.py \
 ```
 MNEG-Wheat-Disease-clssification/
 ├──Dataset-classification/  #自建的小麦叶片数据集（含白粉病、条锈病、叶锈病、健康叶片）
+├──data_set                 #数据集处理文件
+|  └──data_loader.py        #数据集加载与预处理
+|  └──my_datadset.py        #对图像进行预处理
+|  └──wheat_gan.py          #使用GAN生成部分病害图像数据集
 ├──examples/                # 预测示例图像
 |  └──mine                  #自建数据集举例
 |  └──public                #开源数据集举例
@@ -128,5 +132,24 @@ MNEG-Wheat-Disease-clssification/
 ├──requirements.txt         #环境需求
 └──train.py                 #训练代码
 ```
-
-
+# 8.已知问题与注意事项
+1.数据集适配：当前模型与权重仅针对我们自建的数据集中的病害，若增加新病害，需补充对应数据集并且重新训练。  
+2.CUDA版本问题：若安装Pytorch时出现CUDA不兼容，可替换为CPU版本。  
+3.田间场景适配：若用于实际田间检测，建议先通过 dataset/data_loader.py 中的数据增强模块扩充数据集，提升模型对田间复杂环境的适应能力。  
+# 9.引用与联系
+## 9.1 引用方式
+论文处于投刊阶段，正式发表后将更新BibTeX引用格式，当前可临时引用：
+```
+@article{hh_former_wheat_disease,
+  title={
+VWLM: A Novel and High Accuracy Deep Learning model for Wheat Disease Identification },
+  author={[作者姓名，待发表时补充]},
+  journal={[期刊名称，待录用后补充]},
+  year={2025},
+  note={Manuscript submitted for publication}
+}
+```
+## 9.2 联系方式
+若遇到代码运行问题或学术交流需求，请联系：
+-邮箱：mazizhen@huuc.edu.cn
+-GitHub Issue：直接在本仓库提交Issue，会在1-3个工作日内回复。
