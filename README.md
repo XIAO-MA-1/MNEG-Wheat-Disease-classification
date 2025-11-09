@@ -24,7 +24,8 @@
 ```
 Dataset-classification/
    ├──data_wheat/
-      ├──val/（测试集，格式与训练集相同）
+      ├──text/（测试集，格式与训练集相同）
+      ├──val/（验证集，格式与训练集相同）
       ├──train/（训练集）
          ├── 枯萎病 / # 小麦枯萎病叶片图像（病斑特征：叶片枯萎、变色，严重时大面积干枯，影响植株生理功能）  
          ├── 白粉病 / # 小麦白粉病叶片图像（病斑特征：叶片表面覆盖白色粉状霉层，阻碍气体交换与光合作用）  
@@ -95,7 +96,7 @@ python train.py \
 使用训练好的权重进行小麦叶片图像预测，运行```predict.py```脚本，实例命令：
 ```
 python predict.py \
-   --image_path ./
+   --image_path ./example/mine/Leaf rust.jpg \ #输入图像路径（示例图存于wxamples/）
 ```
 
 
