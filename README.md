@@ -152,6 +152,6 @@ VWLM: A Novel and High Accuracy Deep Learning model for Wheat Disease Identifica
 }
 ```
 ## 9.2 联系方式
-若遇到代码运行问题或学术交流需求，请联系：
--邮箱：mazizhen@huuc.edu.cn
--GitHub Issue：直接在本仓库提交Issue，会在1-3个工作日内回复。
+若遇到代码运行问题或学术交流需求，请联系：  
+- 邮箱：mazizhen@huuc.edu.cn
+- GitHub Issue：直接在本仓库提交Issue，会在1-3个工作日内回复。
