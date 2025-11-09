@@ -37,10 +37,31 @@ Dataset-classification/
 # 4.实验环境配置
 ## 4.1依赖安装
 推荐使用Anaconde创建虚拟虚拟环境安装，确保依赖版本匹配（避免兼容性问题，尤其适配Pytorch=2.1.1+cu118）
+```
+# 1. 创建并激活虚拟环境
+conda creat -n D:\environments\three python=3.9
+conda activate D:\environemnts\three
 
-
-
-
+# 2. 安装PyTorch、TorchVision和Torchaudio（需适配CUDA版本）
+pip install D:\whl\torch-1.12.0+cu113-cp39-cp39-win_amd64.whl
+pip install D:\whl\torchvision-0.13.0+cu113-cp39-cp39-win_amd64.whl
+pip install D:\whl\torchaudio-0.12.0+cu113-cp39-cp39-win_amd64.whl
+# 3. 安装其他依赖库（数据处理、可视化、模型工具等）
+pip install numpy~=1.26.4 matplotlib~=3.5.1 opencv-python~=4.8.0.76
+pip install pandas~=1.2.4 pillow~=11.2.1
+pip install tqdm~=4.67.1 
+```
+## 4.2硬件要求
+| 配置项                   | 详情                                       |
+|-------------------------|-------------------------------------------|
+| Operating system        | Windows 11(64-bit)                        |
+| Processor               | 12th Gen Intel(R) Core(TM) i9-12900H      |
+| Graphics card           | NVIDIA GeForce RTX 3060 Laptop GPU        |
+| Memory                  | 16GB                                      |
+| Deep learning framework | Pytorch                                   |
+| Editor                  | Pycharm 2023.3                            |
+| Programming language    | Python3.9                                 |
+# 5.实验结果
 
 
 ## 4.1核心性能指标（自建数据集）
