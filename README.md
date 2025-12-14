@@ -1,6 +1,6 @@
 # MNEG-Wheat-Disease-classification
 ```
-官方 PyTorch 实现 | 论文《MNEG: Research on the Deep Learning Model with Fused Hierarchical Dual Attention Mechanism in Wheat Leaf Disease Detection》（投稿阶段）  
+官方 PyTorch 实现 | 论文《MNEG: An Efficient and Lightweight Deep Learning Model for Wheat Leaf Disease Identification》（投稿阶段）  
 ```
 # 1.项目简介
 小麦是全球核心粮食作物，但叶片病害（白粉病、斑枯病、叶枯病、叶锈病等）导致全球年产量损失 10%-25%，传统人工识别效率低、实验室检测周期长，现有深度学习模型难以平衡轻量化部署与高精度识别需求。  
