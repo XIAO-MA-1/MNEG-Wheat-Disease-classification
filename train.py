@@ -70,31 +70,22 @@ def main():
                                                   num_workers=nw, pin_memory=True)
 
     print("using {} images for training, {} images for validation.".format(train_num, val_num))
-
-    # create model
     net = MobileNetV2(num_classes=5).to(device)
-
-    # 冻结部分层
-    for param in net.features[:-5].parameters():  # 解冻最后几个层
+    for param in net.features[:-5].parameters(): 
         param.requires_grad = False
-
     net.to(device)
 
-    # 定义损失函数（添加标签平滑）
     loss_function = nn.CrossEntropyLoss(label_smoothing=0.1)
-    # 优化器
+
     params = [p for p in net.parameters() if p.requires_grad]
-    optimizer = optim.Adam(params, lr=0.001, weight_decay=1e-4)  # 减小初始学习率，添加权重衰减
+    optimizer = optim.Adam(params, lr=0.001, weight_decay=1e-4)  
 
-    # 学习率调度器
     scheduler = ReduceLROnPlateau(optimizer, 'min', patience=5, factor=0.5, verbose=True)
-    # 混合精度训练初始化
-    scaler = GradScaler()  # 梯度缩放器
 
+    scaler = GradScaler() 
     best_acc = 0.0
     save_path = r'D:\Users\18238\Desktop\weight\最终模型.pth'
     train_steps = len(train_loader)
-
     for epoch in range(epochs):
         # 训练阶段
         net.train()
@@ -104,29 +95,18 @@ def main():
         for step, data in enumerate(train_bar):
             images, labels = data
             optimizer.zero_grad()
-            # 混合精度训练
-            with torch.cuda.amp.autocast():  # 启用自动混合精度
+            with torch.cuda.amp.autocast(): 
                 logits = net(images.to(device))
                 loss = loss_function(logits, labels.to(device))
-
-            # 梯度缩放和反向传播
-            scaler.scale(loss).backward()  # 缩放loss以防止FP16下溢
-            scaler.step(optimizer)  # 更新参数
-            scaler.update()  # 更新缩放因子
-
+            scaler.scale(loss).backward()  
+            scaler.step(optimizer) 
+            scaler.update()  
             running_loss += loss.item()
-
-            # 计算训练准确率
             predict_y = torch.max(logits, dim=1)[1]
             train_acc += torch.eq(predict_y, labels.to(device)).sum().item()
-
             train_bar.desc = "train epoch[{}/{}] loss:{:.3f}".format(epoch + 1, epochs, loss)
-
-        # 计算平均训练损失和准确率
         train_loss = running_loss / train_steps
         train_accurate = train_acc / train_num
-
-        # 验证阶段
         net.eval()
         val_loss = 0.0
         acc = 0.0
@@ -139,23 +119,17 @@ def main():
                 val_loss += loss.item()
                 predict_y = torch.max(outputs, dim=1)[1]
                 acc += torch.eq(predict_y, val_labels.to(device)).sum().item()
-
                 val_bar.desc = "valid epoch[{}/{}]".format(epoch + 1, epochs)
-
         val_loss /= len(validate_loader)
         val_accurate = acc / val_num
-
         print('[epoch %d] train_loss: %.3f  train_accuracy: %.3f  val_loss: %.3f  val_accuracy: %.3f' %
               (epoch + 1, train_loss, train_accurate, val_loss, val_accurate))
 
-        # 学习率调度
         scheduler.step(val_loss)
 
-        # 早停和模型保存
         if val_loss < best_loss:
             best_loss = val_loss
             best_acc = val_accurate
-            #patience_counter = 0
             torch.save({
                 'epoch': epoch + 1,
                 'model_state_dict': net.state_dict(),
